@@ -83,7 +83,7 @@ psycopg2==2.9.6
 pycparser==2.21
 pydantic==1.10.8
 pydantic-sqlalchemy==0.0.9
-PyJWT==1.7.1
+PyJWT==2.4.0
 PyPDF2==3.0.1
 pyquery==2.0.0
 pyrsistent==0.19.3
