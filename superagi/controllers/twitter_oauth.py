@@ -17,7 +17,9 @@ from superagi.models.toolkit import Toolkit
 router = APIRouter()
 
 @router.get('/oauth-tokens')
-async def twitter_oauth(oauth_token: str = Query(...),oauth_verifier: str = Query(...), Authorize: AuthJWT = Depends()):
+async def twitter_oauth(oauth_token: str = Query(...), oauth_verifier: str = Query(...), Authorize: AuthJWT = Depends()):
+    if not (oauth_token.isalnum() and oauth_verifier.isalnum()):
+        return {"error": "Invalid oauth_token or oauth_verifier"}
     token_uri = f'https://api.twitter.com/oauth/access_token?oauth_verifier={oauth_verifier}&oauth_token={oauth_token}'
     conn = http_client.HTTPSConnection("api.twitter.com")
     conn.request("POST", token_uri, "")
